@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <title>MQTT Sensor Dashboard</title>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+
+    <style>
+      body {
+        font-family: Arial;
+        background: #111;
+        color: white;
+        text-align: center;
+      }
+
+      .card {
+        background: #222;
+        padding: 20px;
+        margin: 20px;
+        border-radius: 10px;
+        display: inline-block;
+        width: 200px;
+      }
+
+      .value {
+        font-size: 30px;
+        color: #00ff9c;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>IoT MQTT Dashboard</h1>
+
+    <div class="card">
+      Temperature
+      <div id="temp" class="value">--</div>
+    </div>
+
+    <div class="card">
+      Humidity
+      <div id="hum" class="value">--</div>
+    </div>
+
+    <script>
+      const socket = io();
+
+      socket.on("sensor", (data) => {
+        document.getElementById("temp").innerText = data.temperature + " °C";
+        document.getElementById("hum").innerText = data.humidity + " %";
+      });
+    </script>
+  </body>
+</html>
