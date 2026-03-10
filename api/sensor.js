@@ -15,5 +15,5 @@ client.on("connect", () => {
     client.publish("iot/sensor", JSON.stringify(data));
 
     console.log("Publish:", data);
-  }, 2000);
+  }, 1000);
 });
